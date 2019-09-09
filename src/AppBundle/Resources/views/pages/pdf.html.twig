@@ -1,0 +1,78 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>congé</title>
+   <link href="{{ asset('assets/pdf/style.css')}}" rel="stylesheet">
+  </head>
+  <body style="  position: relative;
+  width: 21cm;
+  height: 29.7cm;
+  margin: 0 auto;
+  color: #555555;
+  background: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-family: SourceSansPro;">
+    <header class="clearfix" style="  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #AAAAAA;">
+      <div id="logo">
+
+      </div>
+      <div id="company">
+        <h2 class="name">3Dfordeco</h2>
+        <div>Rue Talleyrand imm le 5 ,1er étage _1002 Tunis Mohammed V</div>
+        <div>71 89 22 74</div>
+        <div><a href="mailto:company@example.com">decod@3dfordeco.com</a></div>
+      </div>
+      </div>
+    </header>
+    <main>
+        <h1 style="    text-align: center;"> Demande de congé </h1>
+      <div id="details" class="clearfix" style="
+  display: table;
+  clear: both;">
+        <div id="client" style="padding-left: 20px;
+    border-left: 6px solid #0087C3;
+    float: left;margin-bottom: 50px;">
+          <div class="to" style="    font-size: 17px;">Le / la soussigné(e):</div>
+          <h2 class="name"> Nom  : {{ conge.nom }}</h2>
+            <h2 class="name"> Prenom  : {{ conge.prenom }}</h2>
+
+        </div>
+
+      </div>
+
+      <div id="thanks" style="font-size: 2em;
+  margin-bottom: 50px;">Demande  {{ conge.jours }}  jours de congé du  {{ conge.dateDebut|date("d/m/Y") }}  au {{ conge.dateFin|date("d/m/Y") }} .</div>
+      <div id="thanks" style="font-size: 1.6em;
+  margin-bottom: 50px;">Type de congé :  {{ conge.typeCong }}  .</div>
+
+<div id="client" style="padding-left: 6px;
+    border-left: 6px solid #0087C3;
+    float: left;margin-bottom: 50px;">
+      <div id="notices" style="font-size:20px;margin-left: 15px;">
+        <div>solde de congé :</div><br>
+        {% if conge.retour ==1 %}
+       <div class="notice">Accordé par : {{ conge.manager }} &nbsp;&nbsp;&nbsp;&nbsp;<br><br>Le : {{ conge.dateAccept }}</div><br>
+        {% endif %}
+        {% if conge.retour ==2 %}
+       <div class="notice"> Refusé par : {{ conge.manager }}&nbsp;&nbsp;&nbsp;&nbsp;<br><br> Le : {{ conge.dateAccept }}.</div>
+       {% endif %}
+		<div  style="    font-size: 19px; position: relative;
+    top: 79px;">Signature du salarié </div>
+				<div class="to" style="    font-size: 19px;
+    position: relative;
+    top: 59px;
+       margin-left: 470px; ">Signature du responsable </div>
+
+      </div>
+      </div>
+    </main>
+
+  </body>
+
+
+
+</html>

@@ -1,0 +1,327 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+      
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+<link href="../assets/node_modules/wizard/steps.css" rel="stylesheet">
+      <div class="row" id="validation">
+                    <div class="col-12">
+                    
+                        <div class="card wizard-content">
+                            <div class="card-body">
+                                <h4 class="card-title">planing </h4>
+                                <h6 class="card-subtitle">You can us the validation like what we did</h6>
+                                <form action="{{ path('commande_new') }}" method="post" class="validation-wizard wizard-circle">
+                                  
+                                    <!-- Step 1 -->
+                                    <h6>Step 1</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlocation2"> Select Client : <span class="danger">*</span> </label>
+                                                    <select class="custom-select form-control required" id="wlocation2" name="clients">
+                                                        {% for clients in clients %}
+                                                        <option value="{{ clients.nomc }}" >{{ clients.nomc }} </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     <label for="wlastName2"> Désignation de commande: <span class="danger">*</span> </label>
+                                                    <div class="table-responsive">  
+                                                                <table class="table " id="dynamic_field">  
+                                                                        <tr> 
+                                                                            <td><button type="button" name="add" id="add" class="btn btn-success">+</button></td>   
+                                                                       <td><input type="text" name="design[]" placeholder="Enter your désignation" class="form-control name_list" /></td>    
+                                                                        </tr>  
+                                                                </table>  
+                                                            </div>                                    
+                                                    </div>
+                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                              <label for="wlastName2"> Réferent Client: <span class="danger">*</span> </label>
+                                                <div class="table-responsive">  
+                                                                <table class="table " id="dynamic_field2">  
+                                                                        <tr> 
+                                                                            <td><button type="button" name="add2" id="add2" class="btn btn-success">+</button></td>
+                                                                                  
+                                                                            <td><input type="text" name="ref[]" placeholder="Enter your ref" class="form-control name_list" /></td>  
+                                                                        </tr>  
+                                                                </table>  
+                                                            </div>                                    
+                                                    </div>
+                                            </div>
+                                           
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="wlastName2"> Numéro du Devis: <span class="danger">*</span> </label>
+                                                     <div class="table-responsive">  
+                                                                <table class="table " id="dynamic_field3">  
+                                                                        <tr> 
+                                                                            <td><button type="button" name="add3" id="add3" class="btn btn-success">+</button></td>   
+                                                                        
+                                                                            <td><input type="text" name="devis[]" placeholder="Enter your devis" class="form-control name_list" /></td>  
+                                                                        </tr>  
+                                                                </table>  
+                                                            </div>                                    
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlocation2"> Select Commercial : <span class="danger">*</span> </label>
+                                                    <select class="custom-select form-control required" id="wlocation2" name="commerce">
+                                                        {% for commerce in commerce %}
+                                                        <option >{{ commerce.nom }} {{ commerce.prenom }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     <div class="form-group">
+                                                    <label for="wlocation2"> Select Account Manager : <span class="danger">*</span> </label>
+                                                    <select class="custom-select form-control required" id="wlocation2" name="account">
+                                                        {% for account in account %}
+                                                        <option >{{ account.nom }} {{ account.prenom }} </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 2 -->
+                                    <h6>Step 2</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                 
+                                                    <label for="jobTitle2">Date reception Brief :</label>
+                                                    <input type="date" class="form-control " id="jobTitle2" name="brief">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="webUrl3">Date reception Echantillons :</label>
+                                                    <input type="date" class="form-control " id="webUrl3" name="reception"> </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="shortDescription3">Date de lancement de prod :</label>
+                                                    <input type="date" class="form-control " id="webUrl3" name="prod"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="shortDescription3">Deadline :</label>
+                                                    <input type="date" class="form-control " id="webUrl3" name="Deadline"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 3 -->
+                                    <h6>Step 3</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6" style="background-color: honeydew;">
+                                                <div class="form-group">
+                                                <label for="shortDescription3">selection des produits :</label>
+                                                    <div class="form-group">
+                                                        <label for="participants1">Nom du produit </label>
+                                                        <input type="text" class="form-control required" name="produit">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="participants1">Livrable</label>
+
+                                                        <div class="table-responsive">
+                                                            <table class="table " id="dynamic_field4">
+                                                                <tr>
+                                                                    <td><button type="button" name="add4" id="add4" class="btn btn-success">+</button></td>
+
+                                                                    <td><input type="text" name="livrable[]" placeholder="Enter your livrable" class="form-control name_list" /></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                            </div>
+
+                                                    <div class="form-group">
+                                                        <label for="participants1">Quantite</label>
+                                                        <input type="text" class="form-control required" name="quantite">
+                                                    </div>
+
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-6" style="    background-color: bisque;">
+                                                <div class="form-group">
+                                                     <label for="wlocation2"> Select equipes : <span class="danger">*</span> </label>
+                                                     <select class="custom-select" name="equipes[]" multiple="multiple" style="height: 570px">
+                                                        {% for equipe in equipe %}
+                                                        <option value="{{ equipe.nom }} {{ equipe.prenom }}">{{ equipe.nom }} {{ equipe.prenom }} </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     <label for="wlocation2"> Select Manager : <span class="danger">*</span> </label>
+                                                    <select class="custom-select form-control required" id="wlocation2" name="manager">
+                                                        {% for manager in manager %}
+                                                        <option >{{ manager.nom }} {{ manager.prenom }} </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     <label for="wlocation2"> Select DA : <span class="danger">*</span> </label>
+                                                    <select class="custom-select form-control required" id="wlocation2" name="da">
+                                                        {% for da in da %}
+                                                        <option >{{ da.nom }} {{ da.prenom }} </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Step 4 -->
+                                    <h6>Step 4</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="behName1">Lien de dossier :</label>
+                                                    <input type="text" class="form-control required" name="lien">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="participants1">Etat d'avancement</label>
+                                                    <input type="text" class="form-control required" name="etat">
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="decisions1">Comments</label>
+                                                    <textarea   rows="5" class="form-control" name="comment"></textarea>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        <input type="submit" name="valider_commande" class="btn btn-success" value="Valider la commande" />
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  
+
+      
+ <script>  
+ $(document).ready(function(){  
+      var i=1;  
+      var j=1; 
+      var k=1;
+      var l=1;
+    
+      $('#add').click(function(){  
+           i++;  
+           $('#dynamic_field').append('<tr id="row'+i+'"><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td><td><input type="text" name="design[]" placeholder="Enter your designation" class="form-control name_list" /></td></tr>');  
+      });  
+       $('#add2').click(function(){  
+           j++;  
+           $('#dynamic_field2').append('<tr id="row'+j+'"><td><button type="button" name="remove" id="'+j+'" class="btn btn-danger btn_remove">X</button></td><td><input type="text" name="ref[]" placeholder="Enter your ref" class="form-control name_list" /></td></tr>');  
+      }); 
+        $('#add3').click(function(){  
+           k++;  
+           $('#dynamic_field3').append('<tr id="row'+k+'"><td><button type="button" name="remove" id="'+k+'" class="btn btn-danger btn_remove">X</button></td><td><input type="text" name="devis[]" placeholder="Enter your devis" class="form-control name_list" /></td></tr>');  
+      });
+     $('#add4').click(function(){
+         l++;
+         $('#dynamic_field4').append('<tr id="row'+l+'"><td><button type="button" name="remove" id="'+l+'" class="btn btn-danger btn_remove">X</button></td><td><input type="text" name="livrable[]" placeholder="Enter your livrable" class="form-control name_list" /></td></tr>');
+     });
+     $(document).on('click', '.btn_remove', function(){
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      });  
+     
+    
+ });  
+
+
+ </script>
+             
+    <script src="../assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../assets/node_modules/popper/popper.min.js"></script>
+    <script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+    <!--stickey kit -->
+    <script src="../assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="../assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
+   
+    <script src="../assets/node_modules/moment/moment.js"></script>
+    <!-- This Page JS -->
+    <script src="../assets/node_modules/wizard/jquery.steps.min.js"></script>
+    <script src="../assets/node_modules/wizard/jquery.validate.min.js"></script>
+    <script src="../assets/node_modules/sweetalert/sweetalert.min.html"></script>
+    <script>
+        //Custom design form example
+        $(".tab-wizard").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+           
+        });
+
+
+        var form = $(".validation-wizard").show();
+
+        $(".validation-wizard").steps({
+            headerTag: "h6",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            titleTemplate: '<span class="step">#index#</span> #title#',
+           
+        }), $(".validation-wizard").validate({
+            ignore: "input[type=hidden]",
+            errorClass: "text-danger",
+            successClass: "text-success",
+            highlight: function (element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            unhighlight: function (element, errorClass) {
+                $(element).removeClass(errorClass)
+            },
+            errorPlacement: function (error, element) {
+                error.insertAfter(element)
+            },
+            rules: {
+                email: {
+                    email: !0
+                }
+            }
+        })
+    </script>
+               
+<style>
+.table td, .table th {
+     padding: 0rem; 
+    vertical-align: middle;
+}
+</style>
+
+    <button type="button" class="bbtn waves-effect waves-light btn-rounded btn-outline-secondary"> <a href="{{ path('commande_index') }}">Back to the list</a></button>
+{% endblock %}

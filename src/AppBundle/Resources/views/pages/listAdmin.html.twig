@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- Footable CSS -->
+    <link href="../assets/node_modules/footable/css/footable.core.html" rel="stylesheet">
+    <link href="../assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <!-- Page CSS -->
+    <link href="dist/css/pages/contact-app-page.css" rel="stylesheet">
+    <link href="dist/css/pages/footable-page.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+     
+            <div class="row col-12">
+                    <div class="col-12">
+                        <div class="card">
+                            <!-- .left-right-aside-column-->
+                            <div class="contact-page-aside">
+                                <!-- .left-aside-column-->
+                                
+                                <!-- /.left-aside-column-->
+                                <div class="right-aside ">
+                                    <div class="right-page-header">
+                                        <div class="d-flex">
+                                            <div class="align-self-center">
+                                                <h4 class="card-title m-t-10">Employee List </h4></div>
+                                            <div class="ml-auto">
+                                                <input type="text" id="demo-input-search2" placeholder="search contacts" name="search" class="form-control"> </div>
+                                        </div>
+                                    </div>
+                                      <ul class="nav nav-second-level" >
+                                    <div class="table-responsive">
+                                        <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list" data-page-size="10">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name</th>
+                                                    <th>prenom</th>
+                                                    <th>Phone</th>
+                                                    <th>Role</th>
+                                                    <th>anniversaire</th>
+                                                    <th>Joining date</th>
+                                                     <th>congé</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="entitiesNav">
+                                            {% for employes in employes|reverse %}
+                                                <tr>
+                                                    <td>{{ employes.id}}</td>
+                                                    <td>
+                                                        <a href=""><img src="../images/{{ employes.poste}}/{{ employes.nom}}{{ employes.prenom}}.jpg" alt="user" class="img-circle" /> {{ employes.nom}}</a>
+                                                    </td>
+                                                    <td>{{ employes.prenom}}</td>
+                                                    <td>{{ employes.telephone}}</td>
+                                                    <td><span class="label label-danger">{{ employes.poste}}</span> </td>
+                                                    <td>{{ employes.birthday|date("d/m/Y")}}</td>
+                                                    <td>{{ employes.date|date("d/m/Y")}}</td>
+                                                    <td>{{ employes.conge}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete">
+                                                       <a href="{{ path('delete_list',{'id': employes.id }) }}"> <i class="ti-close" aria-hidden="true"></i></a></button>
+                                                    </td>
+                                                </tr>                                                   
+                                            {% endfor %}
+                                              
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <button type="button" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#add-contact"><a href="{{ path('employes_list')}}" style="color:#fff;">Retour</a></button>
+                                                    </td>
+                                                
+                                                    <td colspan="7">
+                                                        <div class="text-right">
+                                                            <ul class="pagination"> 
+                                                               <div class="navigation">
+                                                                    {{ knp_pagination_render(employes) }}
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                     
+                                    </div>
+                                    <!-- .left-aside-column-->
+                                </div>
+                                <!-- /.left-right-aside-column-->
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+
+<style>
+.right-aside {
+   
+    margin-left: 25px !important;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-lg-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">List Produits</h4>
+                              <button type="button" class="btn btn-success m-b-40">    
+                                <a href="{{ path('product_new') }}" style="color: #ffffff;"><i class="icon-plus"></i> Create a new product</a></button>
+                                <div class="table-responsive">
+                                    <table class="table full-color-table full-info-table">
+                                        <thead>
+                                            <tr>
+                                                 <th>N°</th>
+                                                <th>Nom</th>
+                                                <th>Livrable</th>
+                                                <th>Format</th>
+                                                <th>Resolution</th>
+                                                <th>Dpi</th>
+                                                <th>Profil</th>
+                                                <th>quantite</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for product in products %}
+                                                <tr>
+                                                    <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                                                    <td>{{ product.nom }}</td>
+                                                    <td>{{ product.livrable }}</td>
+                                                    <td>{{ product.format }}</td>
+                                                    <td>{{ product.resolution }}</td>
+                                                    <td>{{ product.dpi }}</td>
+                                                    <td>{{ product.profil }}</td>
+                                                    <td>{{ product.quantite }}</td>
+                                                    <td>
+                                                       <a href="{{ path('product_edit', { 'id': product.id }) }}"><i class="mdi mdi-border-color" ></i></a>
+                                                      
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+  
+
+    
+{% endblock %}

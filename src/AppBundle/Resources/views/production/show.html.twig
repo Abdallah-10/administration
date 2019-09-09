@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Production</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ production.id }}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ production.users.nom }}</td>
+            </tr>
+            <tr>
+                <th>Datetache</th>
+                <td>{% if production.dateTache %}{{ production.dateTache|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Taches</th>
+                <td>{{ production.tache.nom }}</td>
+            </tr>
+            <tr>
+                <th>Commande</th>
+                <td>{{ production.commande }}</td>
+            </tr>
+            <tr>
+                <th>Superviseur</th>
+                <td>{{ production.superviseur }}</td>
+            </tr>
+            <tr>
+                <th>Detail</th>
+                <td>{{ production.detail }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{% if production.dateDebut %}{{ production.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if production.dateFin %}{{ production.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Estime</th>
+                <td>{% if production.estime %}{{ production.estime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tempspasse</th>
+                <td>{{ production.tempsPasse }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ production.note }}</td>
+            </tr>
+            <tr>
+                <th>Datenow</th>
+                <td>{% if production.dateNow %}{{ production.dateNow|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Retour</th>
+                <td>{{ production.retour }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('production_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('production_edit', { 'id': production.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

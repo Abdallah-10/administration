@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+ 
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- This Page CSS -->
+    <link href="../assets/node_modules/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
+    <link href="dist/css/pages/user-card.css" rel="stylesheet">
+
+</head>
+    
+             <div class="row el-element-overlay">
+                    <div class="col-md-12">
+                         </div>
+                          {% for employes in employes|reverse %}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1"> <img src="../images/{{ employes.poste}}/{{ employes.nom}}{{ employes.prenom}}.jpg" alt="user" style="height: 570px;" />
+                                    <div class="el-overlay scrl-up">
+                                        <ul class="el-info">
+                                            <li><a class="btn default btn-outline image-popup-vertical-fit" href="../images/{{ employes.poste}}/{{ employes.nom}}{{ employes.prenom}}.jpg"><i class="icon-magnifier"></i></a></li>
+                                            <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="el-card-content">
+                                    <h5 class="box-title">{{ employes.nom}}</h5> <small>{{ employes.poste}}</small>
+                                    <br/> </div>
+                            </div>
+                        </div>
+                    </div>
+                     {% endfor %} 
+              </div>     
+                <div class="navigation">
+                    {{ knp_pagination_render(employes) }}
+                </div>
+   
+{% endblock %}

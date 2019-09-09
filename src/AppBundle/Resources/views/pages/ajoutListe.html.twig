@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+<div class="col-3"></div>
+<div class="col-lg-3 col-md-4 col-sm-6" >
+{{ form_start(form) }}
+
+{{ form_errors(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.telephone) }}
+    {{ form_row(form.pass_word) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.poste,{attr: {class: 'form-control'} }) }}
+     {{ form_row(form.conge) }}
+     <hr>
+     {{ form_row(form.date, { 'label': 'date embauche' }) }} 
+     
+     <hr>
+     {{ form_row(form.birthday) }} 
+     <hr>  
+   
+{{ form_end(form) }}
+
+{{ form_row(form.save, { 'label': 'save' }) }}
+<button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button></div>
+</div>
+<style>
+button#form_save {
+    margin-top: 20px;
+    width: 27%;
+    FONT-SIZE: 18PX;
+    margin-bottom: 50px;
+}
+button.btn.btn-danger.waves-effect {
+    position: relative;
+    top: -91px;
+    PADDING: 9px;
+    width: 27%;
+    left: 70%;
+}
+</style>
+{% endblock %}

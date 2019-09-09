@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+  {% for image in images %}
+  {% if loop.index < 5 %}
+<div class="col-md-3">
+  <h4>image acceuil {{ image.id }}</h4>
+ 
+  <div class="card" style="width:400px">
+    <img class="card-img-top" src="/gallery/{{ image.nom }}" alt="Card image" style="width:100%;    height: 225px;">
+    <div class="card-body">
+     <a href="{{ path('images_edit', { 'id': image.id }) }}" class="btn btn-primary">edit </a> (1920 x 960)
+    </div>
+  </div>
+  <br>
+ </div>
+ {% endif %}
+ 
+ {% endfor %}
+ <hr>
+ </div>
+ <div class="row" style="background-color: blanchedalmond;"> 
+ <h2 class="center" style="color: red;">Les Meilleurs de la semaine</h2><br>
+</div>
+ <div class="row" style="margin-top:20px;    padding: 90px;">
+   {% for  image in images %}
+  {% if  loop.index > 4 and loop.index < 11 %}
+<div class="col-md-4">
+  <h4>image {{ image.id -4}}</h4>
+ 
+  <div class="card" style="width:400px">
+    <img class="card-img-top" src="/gallery/{{ image.nom }}" alt="Card image" style="width:100%;    height: 225px;">
+    <div class="card-body">
+     <a href="{{ path('images_edit', { 'id': image.id }) }}" class="btn btn-primary">edit </a> ( 1321 x 881 )
+    </div>
+  </div>
+  <br>
+ </div>
+ {% endif %}
+ 
+ {% endfor %}
+ </div>
+ <div class="row" style="background-color: blanchedalmond;"> 
+ <h2 class="center" style="color: red;">Best of</h2><br>
+</div>
+ <div class="row" style="margin-top:20px;padding: 90px;">
+   {% for image in images %}
+  {% if loop.index > 10 %}
+<div class="col-md-4">
+  <h4>image {{ image.id -6}}</h4>
+ 
+  <div class="card" style="width:400px">
+    <img class="card-img-top" src="/gallery/{{ image.nom }}" alt="Card image" style="width:100%;    height: 225px;">
+    <div class="card-header">
+    <h4>{{ image.title }}</h4><br>
+    <h4>{{ image.category }}</h4>
+    </div>
+    <div class="card-body">
+     <a href="{{ path('images_edit', { 'id': image.id }) }}" class="btn btn-primary">edit </a> ( 3000 x 3000 )
+    </div>
+  </div>
+  <br>
+ </div>
+ {% endif %}
+ 
+ {% endfor %}
+ </div>
+</div>
+</div>
+
+
+  <!-- <ul>
+        <li>
+            <a href="{{ path('images_new') }}">Create a new image</a>
+        </li>
+    </ul> -!>
+{% endblock %}

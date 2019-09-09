@@ -1,0 +1,59 @@
+﻿{% extends 'base.html.twig' %}
+
+{% block body %}
+            {% for msg in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Demande des attestations</h4>
+                               
+                                <div class="table-responsive">
+                                    <table class="table full-color-table full-default-table hover-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>nom</th>
+                                                <th>prenom</th>
+                                                <th>type</th>
+                                                <th>note</th>
+                                                <th>date de demande </th>
+                                                <th>Action</th>
+                                                <th></th>
+                                                <th>reponse</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for attestation in attestation|reverse %}
+                                            <tr>
+                                                <td>{{ attestation.id }}</td>
+                                                <td>{{ attestation.nom|e }}</td>
+                                                <td>{{ attestation.prenom|e }}</td>
+                                                <td>{{ attestation.typer }}</td>
+                                                <td>{{ attestation.note}}</td>
+                                                <td>{{ attestation.dateEnvoi|date("d/m/Y") }}</td>
+                                     
+                                                <td><a  href="{{ path('attest',{'id': attestation.id}) }}">
+                                                <button name="accept" type="submit" class="btn waves-effect waves-light btn-success">Disponible</button></a></td>
+                                                 <td><a href="{{ path('attestref',{'id': attestation.id}) }}" > <button type="button" name="refus" class="btn waves-effect waves-light btn-danger">refuser</button></a></td>
+                                                 
+                                                  </a> <td>{% if attestation.retour == 0 %} <p>en attente</p> {% elseif attestation.retour == 1 %} <p>disponible</p> {% else %}<p>refusé </p>{% endif %}</td>
+                                            </tr>
+                                            {% endfor %}  
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        
+  
+
+{% endblock %}
+
+
+        

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col-md-3"></div>
+ <div class="col-md-4">
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+    
+
+    {{ form_start(edit_form)}}
+      {{ form_row(edit_form.nom,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.prenom,{ 'attr': {'class': 'form-control'}}) }} 
+        {{ form_row(edit_form.telephone,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.passWord,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.email,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.avatar,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.poste,{ 'attr': {'class': 'form-control'}}) }}
+            {{ form_row(edit_form.fonction,{ 'attr': {'class': 'form-control'}}) }}
+          {{ form_row(edit_form.niveau,{ 'attr': {'class': 'form-control'}}) }}
+            {{ form_row(edit_form.site,{ 'attr': {'class': 'form-control'}}) }}
+           {{ form_row(edit_form.type_contrat,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.date,{ 'attr': {'class': 'form-control'}})  }}
+        {{ form_row(edit_form.birthday,{ 'attr': {'class': 'form-control'}})  }}
+        {{ form_row(edit_form.avatar,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.conge,{ 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(edit_form.taux,{ 'attr': {'class': 'form-control'}}) }}
+      
+        <input  type="submit" class="btn btn-success" value="Edit" />
+    {{ form_end(edit_form ,{ 'attr': {'class': 'form-control input-lg'}})  }}
+
+   {% form_theme edit_form 'bootstrap_4_horizontal_layout.html.twig' %}
+</div>
+{% endblock %}

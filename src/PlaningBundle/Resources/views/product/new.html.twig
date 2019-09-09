@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div class="col-3"></div>
+<div class="col-lg-3 col-md-4 col-sm-6" >
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success" value="Create" />
+         
+    {{ form_end(form) }}
+<button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"> <a href="{{ path('product_index') }}">Back to the list</a></button></div>
+</div>
+  
+{% endblock %}

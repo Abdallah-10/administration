@@ -1,0 +1,206 @@
+﻿{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- Footable CSS -->
+    <link href="../assets/node_modules/footable/css/footable.core.html" rel="stylesheet">
+    <link href="../assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <!-- Page CSS -->
+    <link href="dist/css/pages/contact-app-page.css" rel="stylesheet">
+    <link href="dist/css/pages/footable-page.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+     
+            <div class="row col-12">
+                    <div class="col-12">
+                 <form   style="width: 97%;margin-left: 21px;" method="post" action="{{ path('employes_list') }}">
+                        <div class="row bsearch">
+                                
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control" name="deprt">
+                                    <option value="">Departement </option>
+                                    <option >ADMIN</option>
+                                    <option >B2B SCÈNE</option>
+                                    <option >B2B CANAPE</option>
+                                    <option >DEV</option>
+                                    <option >CANAPE</option>
+                                    <option >COMMERCIAL</option>
+                                    <option >TFR</option>
+                                    <option >DA</option>
+                                </select>  
+                              </div>
+                           </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control" name="fonction">
+                                    <option value="">fonction</option>
+                                    <option>graphiste</option>
+                                    <option >manager</option>
+                                    <option >DEV</option>
+                                    <option >account manager</option>
+                                    <option >technicien</option>
+                                  
+                                </select>
+                                
+                               </div>
+                           </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control" name="niveau">
+                                    <option value="">niveau</option>
+                                    <option >junior</option>
+                                    <option >medium</option>
+                                    <option >senior</option>
+                                   
+                                </select>
+                                
+                               </div>
+                           </div>
+                           <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control" name="site">
+                                    <option value="">site</option>
+                                    <option >Tunis</option>
+                                    <option >Paris</option>
+                                    <option >Tourcoing</option>
+                                </select>
+                                
+                               </div>
+                           </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <select class="form-control" name="typec">
+                                    <option value="">type de contrat</option>
+                                    <option >CDI</option>
+                                    <option >CDI EXO2</option>
+                                    <option >CDI EXO5</option>
+                                    <option >CDD</option>
+                                    <option >CDD EXO2</option>
+                                    <option >CDD EXO5</option>
+                                    <option >SIVP 1</option>
+                                    <option >SIVP 2</option>
+                                    <option >CAIP</option>
+                                    <option >SIDES</option>
+                                    
+                                </select>                             
+                               </div>
+                           </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                    <input type="submit" class="form-control btn btn-primary" name="filtrer">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                        <div class="card">
+                            
+                                <!-- .left-aside-column-->
+                             
+                                <!-- /.left-aside-column-->
+                                <div class="right-aside ">
+                                    <div class="right-page-header">
+                                        <div class="d-flex">
+                                            <div class="align-self-center">
+                                                <h4 class="card-title m-t-10">Employee List </h4></div>
+                                            <div class="ml-auto">
+                                                <form method="post" action="{{ path('employes_list') }}">
+                                                     <input type="text" id="demo-input-search2" placeholder="search contacts" name="search" class="form-control">
+                                                </form>
+                                             </div>
+                                        </div>
+                                    </div>
+                                      <ul class="nav nav-second-level" >
+                                    <div class="table-responsive">
+                                        <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list" data-page-size="10">
+                                            <thead>
+                                                <tr>
+                                                   
+                                                    <th>Name</th>
+                                                    <th>prenom</th>
+                                                    <th>Phone</th>
+                                                    <th>departement</th>
+                                                    <th>fonction</th>
+                                                    <th>niveau</th>
+                                                    <th>site</th>
+                                                    <th>d.naissance</th>
+                                                    <th>Joining date</th>
+                                                    <th>congé</th>
+                                                    <th>taux</th>
+                                                    <th>t.contrat</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="entitiesNav">
+                                            {% for employes in employes|reverse %}
+                                                <tr>
+                                                    <td>
+                                                        <a href=""><img src="../images/{{ employes.poste}}/{{ employes.nom}}{{ employes.prenom}}.jpg" alt="user" class="img-circle" /> {{ employes.nom}}</a>
+                                                    </td>
+                                                    <td>{{ employes.prenom}}</td>
+                                                    <td>{{ employes.telephone}}</td>
+                                                    <td><span class="label label-danger">{{ employes.poste}}</span> </td>
+                                                    <td><span class="label label-info">{{ employes.fonction}}</span> </td>
+                                                    <td><span class="label label-warning">{{ employes.niveau}}</span> </td>
+                                                     <td><span class="label label-primary">{{ employes.site}}</span> </td>
+                                                    <td>{{ employes.birthday|date("d/m/Y")}}</td>
+                                                    <td>{{ employes.date|date("d/m/Y")}}</td>
+                                                    <td>{{ employes.conge}}</td>
+                                                    <td>{{ employes.taux}}</td>
+                                                    <td>{{ employes.TypeContrat}}</td>
+                                                     <td>
+                         <a href="#" ondblclick="window.location = '{{ path('delete_list', { 'id': employes.id }) }}'" style="margin-right: 12px;" ><i class="ti-trash"></i></a>
+
+                                                    <a href="{{ path('users_edit', { 'id': employes.id }) }}" ><i class="mdi mdi-border-color" ></i></a>
+                                                    </td>
+                                                </tr>                                                   
+                                            {% endfor %}
+                                              
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <button type="button" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#add-contact"><a href="{{ path('ajout_list')}}" style="color:#fff;">Add New employe</a></button>
+                                                    </td>
+                                                
+                                                    <td colspan="7">
+                                                        <div class="text-right">
+                                                            <ul class="pagination"> 
+                                                               <div class="navigation">
+                                                                    {{ knp_pagination_render(employes) }}
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                     
+                                    </div>
+                                    <!-- .left-aside-column-->
+                                </div>
+                                <!-- /.left-right-aside-column-->
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+
+
+{% endblock %}

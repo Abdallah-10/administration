@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+ <div class="col-md-3"></div>
+ <div class="col-md-4">
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <div class="row">   
+        <input type="submit" class="btn btn-success"  value="Edit" />
+    {{ form_end(edit_form) }}
+
+
+         <a href="{{ path('tache_index') }}"><input type="button"  class="btn btn-primary" value="Back to the list" style="    margin: 0px 16px 0px 15px;    cursor: pointer;"/></a>
+       
+    </div>
+     </div>
+    {% form_theme edit_form 'bootstrap_4_horizontal_layout.html.twig' %}
+    </div>
+{% endblock %}

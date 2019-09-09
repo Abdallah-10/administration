@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+<div class="col-md-3"></div>
+ <div class="col-md-4">
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class="form-group">
+  {{ form_start(form) }}
+   
+        {{ form_widget(form) }}
+        
+        <input type="submit" class="btn btn-success" value="Create" />
+        <a href="{{ path('tache_index') }}"><input  type="button" class="btn btn-primary" value="Back to the list" style="cursor: pointer;"/></a>
+    {{ form_end(form) }}
+    
+    </div>
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+   </div>
+{% endblock %}

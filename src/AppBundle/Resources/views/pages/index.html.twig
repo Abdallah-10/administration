@@ -1,0 +1,188 @@
+﻿{% extends 'base.html.twig' %}
+
+{% block body %}
+            {% for msg in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger">
+                    {{ msg }}
+                </div>
+            {% endfor %}
+
+          
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-info">
+                                    <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0 text-info">{{ statcongTotal[0]['retourtotal']}}</h3>
+                                    <h5 class="text-muted m-b-0">Demandes des congés</h5></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-success">
+                                    <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0 text-success">{% if (statcong[0]['retour']) is defined  %}{{ statcong[0]['retour'] }}{% endif %}</h3>
+                                    <h5 class="text-muted m-b-0">demandes en attentes</h5>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-inverse">
+                                    <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0">{% if (statcongacc[0]['retour']) is defined  %}{{ statcongacc[0]['retour'] }}{% endif %}</h3>
+                                    <h5 class="text-muted m-b-0">demandes acceptés</h5></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="d-flex flex-row">
+                                <div class="p-10 bg-primary">
+                                    <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
+                                <div class="align-self-center m-l-20">
+                                    <h3 class="m-b-0 text-primary">{% if (statcongruf[0]['retour']) is defined  %}{{ statcongruf[0]['retour'] }}{% endif %}</h3>
+                                    <h5 class="text-muted m-b-0">demandes refusés</h5></div>
+                            </div>
+                        </div>
+                    </div>
+                      
+                    <!-- Column -->
+                
+                    <form   style="width: 97%;margin-left: 21px;" method="post" action="{{ path('demande') }}">
+                            <div class="row bsearch">
+                                
+                                <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Departement select</label>
+                                    <select class="form-control" name="poste">
+                                    <option value="">Departement</option>
+                                   <option >ADMIN</option>
+                                    <option >B2B SCÈNE</option>
+                                    <option >B2B CANAPE</option>
+                                    <option >DEV</option>
+                                    <option >CANAPE</option>
+                                    <option >COMMERCIAL</option>
+                                    <option >TFR</option>
+                                    <option >DA</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+
+                                <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">statut select</label>
+                                    <select class="form-control" name="status">
+                                    <option value="0">en attente</option>
+                                    <option value="1">acceptes</option>
+                                    <option value="2">refuses</option>
+                                  
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                    <label for="usr">search:</label>
+                                    <input type="submit" class="form-control btn btn-primary" name="valide">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Demande des congés</h4>
+                               
+                                <div class="table-responsive">
+                                    <table class="table full-color-table full-default-table hover-table">
+                                        <thead>
+                                            <tr>
+                                                <th>N°</th>
+                                                <th>nom</th>
+                                                <th>prenom</th>
+                                                <th>Departement</th>
+                                                <th>nbrs des jrs</th>
+                                                <th>type de congé </th>
+                                                <th>date de debut </th>
+                                                <th>date de fin </th>
+                                                <th>certif</th>
+                                                <th>Action</th>
+                                             
+                                                <th>reponse</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for conge in conge %}
+                                            <tr {% if conge.retour == 0 %} style="background-color: #ea15152e;" {% endif %}>
+                                                <td>{{ conge.id }}</td>
+                                                <td>{{ conge.nom|e }}</td>
+                                                <td>{{ conge.prenom|e }}</td>
+                                                 <td><span class="label label-danger">{{ conge.poste }}</span></td>
+                                                <td style="text-align: center;">{{ conge.jours }}</td>
+                                                <td>{{ conge.typeCong}}</td>
+                                                <td>{{ conge.dateDebut|date("d/m/Y") }}</td>
+                                                <td>{{ conge.dateFin|date("d/m/Y") }}</td>
+                                                {% if conge.certif is empty %}
+                                                <td><span>--</span></td>
+                                               {% else %}
+                                                    <td style="width: 10%;"><a href="http://3dforyou.3dfordeco.com/img/certif/{{ conge.certif}}" target="_blank"><img src="{{ asset('images/pdf.png') }}" style="width: 30%;" /></a></td>
+                                                {% endif %}
+                                                       <td><a href="{{ path('reponse',{'id': conge.id,'manager': app.user.username,'managers': app.user.lastname }) }}" {% if conge.retour == 1 %} onclick="return false" {% endif %} >
+                                                 <input type="hidden" name="accept"> <input type="hidden" value="{{ app.user.username }}" name="manager">
+                                                 <i class="ti-check-box" data-toggle="tooltip" data-placement="top" title="" data-original-title="accepter"></i></a>
+
+                                                 <a href="{{ path('cong',{'id': conge.id,'manager': app.user.username,'managers': app.user.lastname}) }}" {% if conge.retour == 2 %} onclick="return false" {% endif %} style="padding-left: 16px;">
+                                                 <input type="hidden" name="refus"><i class="icon-trash" data-toggle="tooltip" data-placement="top" title="" data-original-title="refuser"></i></a></td>
+
+                                                 
+                                                 
+                                                  </a> <td>{% if conge.retour == 0 %} <p>en attente</p> {% elseif conge.retour == 1 %} <p>accepté</p> {% else %}<p>refusé </p>{% endif %}</td>
+                                                  
+                                            </tr>
+                                            {% endfor %}  
+                                        </tbody>
+                                        <tfoot>
+                                                <tr>
+                                                   
+                                                
+                                                    <td colspan="7">
+                                                        <div class="text-right">
+                                                            <ul class="pagination"> 
+                                                               <div class="navigation">
+                                                                    {{ knp_pagination_render(conge) }}
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        
+  
+
+{% endblock %}
+
+
+        
